@@ -62,7 +62,8 @@ besogo.makeEditor = function(sizeX, sizeY) {
         promote: promote,
         demote: demote,
         getRoot: getRoot,
-        loadRoot: loadRoot // Loads new game state
+        loadRoot: loadRoot, // Loads new game state
+        notifyListeners: notifyListeners
     };
 
     // Returns the active tool
