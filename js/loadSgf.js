@@ -4,11 +4,15 @@ besogo.loadSgf = function(sgf, editor) {
     var size = { x: 19, y: 19 }, // Default size (may be changed by load)
         root;
 
+    notifyListeners({ sgfEvent: true, sgfLoaded: false });
+
     loadRootProps(sgf); // Load size, variants style and game info
     root = besogo.makeGameRoot(size.x, size.y);
 
     loadNodeTree(sgf, root); // Load the rest of game tree
     editor.loadRoot(root); // Load root into the editor
+
+    notifyListeners({ sgfEvent: true, sgfLoaded: true });
 
 
     // Loads the game tree
