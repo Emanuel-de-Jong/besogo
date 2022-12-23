@@ -33,7 +33,9 @@ besogo.makeEditor = function(sizeX, sizeY) {
         coord = 'none', // Selected coordinate system
 
         // Variant style: even/odd - children/siblings, <2 - show auto markup for variants
-        variantStyle = 0; // 0-3, 0 is default
+        variantStyle = 0, // 0-3, 0 is default
+
+        isTreeJumpAllowed = true;
 
     return {
         addListener: addListener,
@@ -63,8 +65,13 @@ besogo.makeEditor = function(sizeX, sizeY) {
         demote: demote,
         getRoot: getRoot,
         loadRoot: loadRoot, // Loads new game state
-        notifyListeners: notifyListeners
+        notifyListeners: notifyListeners,
+        setIsTreeJumpAllowed: setIsTreeJumpAllowed,
     };
+
+    function setIsTreeJumpAllowed(value) {
+        isTreeJumpAllowed = value;
+    }
 
     // Returns the active tool
     function getTool() {
@@ -283,7 +290,7 @@ besogo.makeEditor = function(sizeX, sizeY) {
 
     // Sets the current node
     function setCurrent(node) {
-        if (current !== node) {
+        if (isTreeJumpAllowed && current !== node) {
             current = node;
             // Notify listeners of navigation (with no tree edits)
             notifyListeners({ navChange: true });
