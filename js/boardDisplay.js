@@ -548,6 +548,9 @@ besogo.makeBoardDisplay = function(container, editor) {
                         case 'label':
                             element = besogo.svgLabel(x, y, color, editor.getLabel());
                             break;
+                        case 'select':
+                            element = besogo.svgCross(x, y, color);
+                            break;
                     } // END switch (tool)
                     if (element) {
                         element.setAttribute('visibility', 'hidden');

@@ -20,7 +20,8 @@ besogo.makeEditor = function(sizeX, sizeY) {
             'triangle', // triangle markup
             'cross', // "X" cross markup
             'block', // filled square markup
-            'label'], // label markup
+            'label', // label markup
+            'select'], // only triggers event
         tool = 'auto', // Currently active tool (default: auto-mode)
         label = "1", // Next label that will be applied
 
@@ -387,6 +388,9 @@ besogo.makeEditor = function(sizeX, sizeY) {
                 break;
             case 'label':
                 setMarkup(i, j, label);
+                break;
+            case 'select':
+                notifyListeners({ x: i, y: j, mark: 6 });
                 break;
         }
     }
